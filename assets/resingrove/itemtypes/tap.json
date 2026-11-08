@@ -1,0 +1,22 @@
+{
+  "code": "tap",
+  "class": "ResinGroveTap",
+  "variantgroups": [{ "code": "metal", "states": ["copper", "tinbronze", "bismuthbronze", "blackbronze", "silver", "gold", "iron", "meteoriciron", "steel"] }],
+  "maxStackSize": 32,
+  "shape": { "base": "resingrove:item/tap" },
+  "textures": { "metal": { "base": "game:block/metal/ingot/{metal}" } },
+  "creativeinventory": { "general": ["*"], "items": ["*"] },
+  "materialDensity": 8000,
+  "guiTransform": {
+    "origin": { "x": 0.5, "y": 0.72, "z": 0 },
+    "rotation": { "x": -20, "y": -45, "z": 0 },
+    "scale": 2.5
+  },
+  "tpHandTransform": {
+    "origin": { "x": 0.5, "y": 0.7, "z": 0 },
+    "translation": { "x": -0.8, "y": -0.3, "z": -0.5 },
+    "rotation": { "x": 0, "y": 0, "z": 90 },
+    "scale": 1
+  },
+  "groundTransform": { "origin": { "x": 0.5, "y": 0.7, "z": 0 }, "scale": 2 }
+}

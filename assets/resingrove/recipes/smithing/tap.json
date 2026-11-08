@@ -1,0 +1,16 @@
+{
+  "ingredient": {
+    "type": "item", "code": "game:ingot-*", "name": "metal",
+    "allowedVariants": ["copper", "tinbronze", "bismuthbronze", "blackbronze", "silver", "gold", "iron", "meteoriciron", "steel"]
+  },
+  "pattern": [[
+    "________________",
+    "___###____###___",
+    "___######_######",
+    "___###____###___",
+    "________________"
+  ]],
+  "name": "resingrove:tree-tap",
+  "code": "resingrove:tap-{metal}",
+  "output": { "type": "item", "code": "resingrove:tap-{metal}", "quantity": 2 }
+}

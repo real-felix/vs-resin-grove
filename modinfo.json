@@ -1,0 +1,13 @@
+{
+  "type": "code",
+  "modid": "resingrove",
+  "name": "Resin Grove",
+  "description": "Smith tree taps, hang wooden buckets, and harvest resin from living pine and acacia trees.",
+  "authors": ["Felix"],
+  "version": "1.0.0",
+  "website": "https://github.com/real-felix/vs-resin-grove",
+  "side": "Universal",
+  "requiredOnClient": true,
+  "requiredOnServer": true,
+  "dependencies": { "game": "1.22.7", "survival": "1.22.7" }
+}

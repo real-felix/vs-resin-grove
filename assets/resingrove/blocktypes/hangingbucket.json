@@ -1,0 +1,36 @@
+{
+  "code": "hangingbucket",
+  "class": "ResinGroveHangingBucket",
+  "entityClass": "ResinGroveHangingBucket",
+  "variantgroups": [{ "code": "side", "states": ["north", "east", "south", "west"] }],
+  "attributes": { "handbook": { "exclude": true } },
+  "shape": { "base": "game:block/wood/bucket/empty" },
+  "textures": {
+    "resin": { "base": "game:block/resin" },
+    "string": { "base": "game:block/cloth/burlap/string" },
+    "blackbronze2": { "base": "game:block/metal/sheet/blackbronze2" },
+    "sides": { "base": "game:block/wood/bucket/sides" },
+    "charred": { "base": "game:block/wood/charred" },
+    "aged": { "base": "game:block/wood/debarked/aged" }
+  },
+  "drawtype": "JSON",
+  "blockmaterial": "Wood",
+  "replaceable": 0,
+  "lightAbsorption": 0,
+  "resistance": 1.5,
+  "sidesolid": { "all": false },
+  "sideopaque": { "all": false },
+  "collisionboxByType": {
+    "*-north": { "x1": 0.2, "y1": 0.05, "z1": 0.38, "x2": 0.8, "y2": 0.8, "z2": 0.98 },
+    "*-east": { "x1": 0.02, "y1": 0.05, "z1": 0.2, "x2": 0.62, "y2": 0.8, "z2": 0.8 },
+    "*-south": { "x1": 0.2, "y1": 0.05, "z1": 0.02, "x2": 0.8, "y2": 0.8, "z2": 0.62 },
+    "*-west": { "x1": 0.38, "y1": 0.05, "z1": 0.2, "x2": 0.98, "y2": 0.8, "z2": 0.8 }
+  },
+  "selectionboxByType": {
+    "*-north": { "x1": 0.2, "y1": 0.05, "z1": 0.38, "x2": 0.8, "y2": 0.8, "z2": 0.98 },
+    "*-east": { "x1": 0.02, "y1": 0.05, "z1": 0.2, "x2": 0.62, "y2": 0.8, "z2": 0.8 },
+    "*-south": { "x1": 0.2, "y1": 0.05, "z1": 0.02, "x2": 0.8, "y2": 0.8, "z2": 0.62 },
+    "*-west": { "x1": 0.38, "y1": 0.05, "z1": 0.2, "x2": 0.98, "y2": 0.8, "z2": 0.8 }
+  },
+  "sounds": { "hit": "game:block/planks", "break": "game:block/planks", "walk": "game:walk/wood" }
+}

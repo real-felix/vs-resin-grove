@@ -1,0 +1,12 @@
+{
+  "textureWidth": 16,
+  "textureHeight": 16,
+  "elements": [{
+    "name": "resin", "from": [4.8, 0, 4.8], "to": [11.2, 0.25, 11.2],
+    "faces": {
+      "up": { "texture": "#resin", "uv": [0, 0, 8, 8] },
+      "north": { "texture": "#resin", "uv": [0, 0, 8, 0.25] }, "south": { "texture": "#resin", "uv": [0, 0, 8, 0.25] },
+      "east": { "texture": "#resin", "uv": [0, 0, 8, 0.25] }, "west": { "texture": "#resin", "uv": [0, 0, 8, 0.25] }
+    }
+  }]
+}

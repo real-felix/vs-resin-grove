@@ -1,0 +1,6 @@
+**/bin/
+**/obj/
+artifacts/
+.serena/
+.DS_Store
+.tools/

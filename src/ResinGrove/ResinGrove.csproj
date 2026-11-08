@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>ResinGrove</AssemblyName>
+    <RootNamespace>ResinGrove</RootNamespace>
+    <Version>1.0.0</Version>
+    <VintageStoryPath Condition="'$(VintageStoryPath)' == ''">$(VINTAGE_STORY)</VintageStoryPath>
+    <VintageStoryPath Condition="'$(VintageStoryPath)' == '' and $([MSBuild]::IsOSPlatform('OSX'))">/Applications/Vintage Story.app</VintageStoryPath>
+    <PackageDirectory>$(MSBuildProjectDirectory)/../../artifacts/resingrove</PackageDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="VintagestoryAPI"><HintPath>$(VintageStoryPath)/VintagestoryAPI.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VSSurvivalMod"><HintPath>$(VintageStoryPath)/Mods/VSSurvivalMod.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VSEssentials"><HintPath>$(VintageStoryPath)/Mods/VSEssentials.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Newtonsoft.Json"><HintPath>$(VintageStoryPath)/Lib/Newtonsoft.Json.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+  <Target Name="CheckGamePath" BeforeTargets="ResolveReferences" Condition="!Exists('$(VintageStoryPath)/VintagestoryAPI.dll')">
+    <Error Text="Set VINTAGE_STORY or -p:VintageStoryPath to your Vintage Story 1.22.7 installation." />
+  </Target>
+  <Target Name="Package" DependsOnTargets="Build">
+    <RemoveDir Directories="$(PackageDirectory)" />
+    <ItemGroup><ModAssets Include="../../assets/**/*" /></ItemGroup>
+    <Copy SourceFiles="@(ModAssets)" DestinationFiles="@(ModAssets->'$(PackageDirectory)/assets/%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="$(TargetPath);../../modinfo.json" DestinationFolder="$(PackageDirectory)" />
+    <Copy SourceFiles="../../modicon.png" DestinationFolder="$(PackageDirectory)" Condition="Exists('../../modicon.png')" />
+    <Copy SourceFiles="../../LICENSE" DestinationFolder="$(PackageDirectory)" Condition="Exists('../../LICENSE')" />
+    <ZipDirectory SourceDirectory="$(PackageDirectory)" DestinationFile="$(MSBuildProjectDirectory)/../../artifacts/resingrove-$(Version).zip" Overwrite="true" />
+  </Target>
+</Project>

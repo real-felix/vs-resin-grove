@@ -1,0 +1,77 @@
+{
+  "code": "tappedlog",
+  "class": "ResinGroveTappedLog",
+  "entityClass": "ResinGroveTappedLog",
+  "variantgroups": [
+    { "code": "wood", "states": ["pine", "acacia"] },
+    { "code": "rotation", "states": ["ud", "ns", "we"] },
+    { "code": "side", "states": ["north", "east", "south", "west"] }
+  ],
+  "behaviors": [{ "name": "PushEventOnBlockBroken", "properties": { "eventName": "testForDecay" } }],
+  "attributes": {
+    "treeFellingGroupCode": "{wood}",
+    "treeFellingGroupSpreadIndexByType": { "*-pine-*": 3, "*-acacia-*": 4 },
+    "preventsDecay": true,
+    "handbook": { "exclude": true }
+  },
+  "shape": { "base": "game:block/basic/cube" },
+  "drawtype": "JSON",
+  "blockmaterial": "Wood",
+  "requiredMiningTier": 1,
+  "resistance": 4.5,
+  "replaceable": 0,
+  "maxStackSize": 16,
+  "texturesByType": {
+    "*-ud-*": {
+      "tap-copper": { "base": "game:block/metal/ingot/copper" },
+      "tap-tinbronze": { "base": "game:block/metal/ingot/tinbronze" },
+      "tap-bismuthbronze": { "base": "game:block/metal/ingot/bismuthbronze" },
+      "tap-blackbronze": { "base": "game:block/metal/ingot/blackbronze" },
+      "tap-silver": { "base": "game:block/metal/ingot/silver" },
+      "tap-gold": { "base": "game:block/metal/ingot/gold" },
+      "tap-iron": { "base": "game:block/metal/ingot/iron" },
+      "tap-meteoriciron": { "base": "game:block/metal/ingot/meteoriciron" },
+      "tap-steel": { "base": "game:block/metal/ingot/steel" },
+      "all": { "base": "game:block/wood/bark/{wood}" },
+      "up": { "base": "game:block/wood/treetrunk/{wood}" },
+      "down": { "base": "game:block/wood/treetrunk/{wood}" }
+    },
+    "*-ns-*": {
+      "tap-copper": { "base": "game:block/metal/ingot/copper" },
+      "tap-tinbronze": { "base": "game:block/metal/ingot/tinbronze" },
+      "tap-bismuthbronze": { "base": "game:block/metal/ingot/bismuthbronze" },
+      "tap-blackbronze": { "base": "game:block/metal/ingot/blackbronze" },
+      "tap-silver": { "base": "game:block/metal/ingot/silver" },
+      "tap-gold": { "base": "game:block/metal/ingot/gold" },
+      "tap-iron": { "base": "game:block/metal/ingot/iron" },
+      "tap-meteoriciron": { "base": "game:block/metal/ingot/meteoriciron" },
+      "tap-steel": { "base": "game:block/metal/ingot/steel" },
+      "all": { "base": "game:block/wood/bark/{wood}-h" },
+      "up": { "base": "game:block/wood/bark/{wood}" },
+      "down": { "base": "game:block/wood/bark/{wood}" },
+      "north": { "base": "game:block/wood/treetrunk/{wood}" },
+      "south": { "base": "game:block/wood/treetrunk/{wood}" }
+    },
+    "*-we-*": {
+      "tap-copper": { "base": "game:block/metal/ingot/copper" },
+      "tap-tinbronze": { "base": "game:block/metal/ingot/tinbronze" },
+      "tap-bismuthbronze": { "base": "game:block/metal/ingot/bismuthbronze" },
+      "tap-blackbronze": { "base": "game:block/metal/ingot/blackbronze" },
+      "tap-silver": { "base": "game:block/metal/ingot/silver" },
+      "tap-gold": { "base": "game:block/metal/ingot/gold" },
+      "tap-iron": { "base": "game:block/metal/ingot/iron" },
+      "tap-meteoriciron": { "base": "game:block/metal/ingot/meteoriciron" },
+      "tap-steel": { "base": "game:block/metal/ingot/steel" },
+      "all": { "base": "game:block/wood/bark/{wood}-h" },
+      "up": { "base": "game:block/wood/bark/{wood}-h" },
+      "down": { "base": "game:block/wood/bark/{wood}-h" },
+      "west": { "base": "game:block/wood/treetrunk/{wood}" },
+      "east": { "base": "game:block/wood/treetrunk/{wood}" }
+    }
+  },
+  "drops": [{ "type": "block", "code": "game:log-placed-{wood}-ud", "quantity": { "avg": 1 } }],
+  "sounds": {
+    "place": "game:block/planks", "hit": "game:block/planks", "break": "game:block/planks", "walk": "game:walk/wood",
+    "byTool": { "Axe": { "hit": "game:block/chop", "break": "game:block/planks" } }
+  }
+}
