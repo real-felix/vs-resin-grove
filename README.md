@@ -61,7 +61,7 @@ Pushing a version tag also creates a **draft GitHub release** with the ZIP attac
 For the first release:
 
 1. The MIT license is included as `LICENSE`. Confirm the author name in `modinfo.json` and copyright holder in `LICENSE`.
-2. The root-level `modicon.png` is a **480×480 PNG** made from the supplied `screenshot.png`. It works for both the in-game icon and the Mod DB's square logo. The Mod DB also accepts **480×320** logos. Keep a larger screenshot for its gallery.
+2. The root-level `modicon.png` is a **480×480 PNG** exported from the supplied image. It works for both the in-game icon and the Mod DB's square logo. The Mod DB also accepts **480×320** logos. Keep a larger screenshot for its gallery.
 3. Push the code to [the GitHub repository](https://github.com/real-felix/vs-resin-grove). Its URL is configured as `website` in `modinfo.json`; enable Issues if you want bug reports there.
 4. Confirm the **Build mod** action succeeds. Record release notes in `CHANGELOG.md`.
 5. Tag the release commit and push the tag:

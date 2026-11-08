@@ -53,7 +53,6 @@ jobs:
       - name: Upload installable ZIP
         uses: actions/upload-artifact@v7
         with:
-          name: resingrove-${{ steps.metadata.outputs.version }}
           path: artifacts/resingrove-${{ steps.metadata.outputs.version }}.zip
           archive: false
           if-no-files-found: error
@@ -69,8 +68,9 @@ jobs:
     steps:
       - uses: actions/download-artifact@v8
         with:
-          name: resingrove-${{ needs.build.outputs.version }}
+          name: resingrove-${{ needs.build.outputs.version }}.zip
           path: artifacts
+          skip-decompress: true
 
       - name: Create draft release
         env:
