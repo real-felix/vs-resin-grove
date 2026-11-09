@@ -14,6 +14,8 @@
   "tree-tap": "Tree taps",
   "tree-required": "Use a tap on a naturally grown pine or acacia tree.",
   "tree-ground-required": "This tree must be connected to solid ground.",
+  "tree-trunk-required": "Place the tap on the trunk, where logs connect downward to the ground.",
+  "tree-ambiguous-root": "This log leads down to different trunks. Place the tap lower on one trunk.",
   "tree-foliage-required": "This tree needs a living crown and at least three connected logs.",
   "tree-too-large": "This connected tree is too large to check safely.",
   "tree-unloaded": "The whole trunk must be in loaded chunks. Move closer and try again.",

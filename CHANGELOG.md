@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.1
+
+- Separate trees with touching crowns now accept their own taps.
+- Resolve trunks downward, including diagonal steps, with ambiguous junctions refused.
+- Repair old tap root reservations when their trunk can be identified, preserving buckets and resin.
+- Prevent an old reservation from clearing another tap's ownership during removal.
+
 ## 1
 
 First public release. Game metadata uses the required semantic version `1.0.0`.

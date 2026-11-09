@@ -1,4 +1,5 @@
 using System.Text;
+using ResinGrove.Core;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -12,6 +13,37 @@ public sealed class BlockEntityTappedLog : BlockEntity
     public BlockPos? Root { get; private set; }
     public ItemStack? Tap { get; private set; }
     private MeshData? mesh;
+
+    public override void Initialize(ICoreAPI api)
+    {
+        base.Initialize(api);
+        if (api.Side == EnumAppSide.Server)
+        {
+            if (Tap != null)
+                api.Event.EnqueueMainThreadTask(() =>
+                {
+                    if (api.World.BlockAccessor.GetBlockEntity(Pos) == this) RefreshRoot();
+                }, "resingrove-migrate-root");
+            // Adjacent chunks may not be ready during Initialize; retry after loading.
+            RegisterGameTickListener(_ => RefreshRoot(), 30000);
+        }
+    }
+
+    public bool RefreshRoot()
+    {
+        if (Api?.Side != EnumAppSide.Server || Tap == null) return false;
+        TreeInspection result = TreeInspector.FindRoot(new TreeWorld(Api.World.BlockAccessor, Pos.dimension),
+            TreeWorld.Position(Pos));
+        if (!result.Valid) return false;
+        BlockPos root = TreeWorld.Position(result.Root, Pos.dimension);
+        if (!TapRegistry.TryMove(Api.World, Root, root, Pos)) return false;
+        if (Root?.Equals(root) != true)
+        {
+            Root = root;
+            MarkDirty();
+        }
+        return true;
+    }
 
     public void Install(BlockPos root, ItemStack tap)
     {

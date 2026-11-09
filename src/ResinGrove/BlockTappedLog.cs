@@ -67,7 +67,7 @@ public sealed class BlockTappedLog : BlockLog
         if (world.Side == EnumAppSide.Server)
         {
             if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntityTappedLog be && be.Root != null)
-                TapRegistry.Release(world, be.Root);
+                TapRegistry.Release(world, be.Root, pos);
             BlockPos bucketPos = pos.AddCopy(TapFace);
             if (world.BlockAccessor.GetBlockEntity(bucketPos) is BlockEntityHangingBucket bucket
                 && bucket.TapPosition.Equals(pos)) bucket.DropAndRemove();

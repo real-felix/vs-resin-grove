@@ -39,7 +39,7 @@ def main():
             if json.loads(package.read("modinfo.json")) != info:
                 raise SystemExit("Packaged modinfo.json differs from the repository")
             for asset in (repo / "assets").rglob("*"):
-                if asset.is_file() and asset.relative_to(repo).as_posix() not in names:
+                if asset.is_file() and asset.name != ".DS_Store" and asset.relative_to(repo).as_posix() not in names:
                     raise SystemExit(f"Missing packaged asset: {asset}")
             for optional in ("modicon.png", "LICENSE"):
                 if (repo / optional).exists() and optional not in names:

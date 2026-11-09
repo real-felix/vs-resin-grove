@@ -2,14 +2,14 @@
 
 A C# tree tapping mod for **Vintage Story 1.22.7 / .NET 10**. Install on both the client and server.
 
-**Release 1** · [GitHub](https://github.com/real-felix/vs-resin-grove) · [Report a bug](https://github.com/real-felix/vs-resin-grove/issues)
+**Release 1.0.1** · [GitHub](https://github.com/real-felix/vs-resin-grove) · [Report a bug](https://github.com/real-felix/vs-resin-grove/issues)
 
 <img src="modicon.png" alt="A copper tree tap and wooden bucket on a tree trunk" width="240" />
 
 ## Play
 
 1. Smith one ingot into **two tree taps**. Copper, the three bronzes, silver, gold, iron, meteoric iron, and steel are supported.
-2. Right-click a vertical face of a naturally grown **pine or acacia log** with a tap. Leave the neighboring space empty. The clicked log becomes a tapped log, keeping its wood and grain orientation.
+2. Right-click a vertical face of a naturally grown **pine or acacia trunk** with a tap. The trunk may step diagonally on its way down to the ground. Leave the neighboring space empty. The clicked log becomes a tapped log, keeping its wood and grain orientation.
 3. Right-click that log with an **empty vanilla wooden bucket**. The bucket hangs in the neighboring block and fills with vanilla resin over game time.
 4. Right-click the bucket to collect complete resin items. **Shift + right-click** returns the empty bucket and all complete resin items. Items that do not fit your inventory drop beside the bucket.
 
@@ -33,10 +33,11 @@ Restart the server after changing the config. Capacity is limited to 1–32 vani
 ## Tree validation and persistence
 
 - Only vanilla `game:log-grown-*` pine and acacia logs, plus this mod's tapped logs, connect the tree. Placed logs do not connect it.
-- An iterative, bounded search follows connected wood, including diagonal acacia branches. Leaves are sampled immediately around the wood; leaf blocks are never traversed.
-- A valid tree needs at least three connected logs, a height of at least three blocks, at least two matching foliage blocks above the base, and a log rooted on solid soil, sand, gravel, or stone. This is a practical living-tree heuristic, not a reconstruction of world generation history.
-- The lowest grounded log is the canonical root, with X/Z used to break ties. Its chunk stores the tap's position. The tapped log's block entity stores the root and original tap item; the bucket's block entity stores the original bucket, resin, and production clock.
-- A tap anywhere in the connected wood prevents another tap, even if the original base is changed. Directly touching trees of the same species conservatively count as one connected tree. Leaves touching between trees do not merge them.
+- Root ownership follows matching logs strictly downward, preferring a log directly below and otherwise allowing diagonal steps one level down. Paths leading to different roots are refused: place the tap lower on one trunk. Arbitrary horizontal branches do not provide a path to the base.
+- A valid tree needs at least three trunk logs, a height of at least three blocks, at least two nearby matching foliage blocks above the base, and a log rooted on solid soil, sand, gravel, or stone. Foliage is sampled locally; leaves are never traversed. This is a practical living-tree heuristic, not a reconstruction of world generation history.
+- The lowest log in a joined, grounded trunk base is the canonical root, with X/Z used to break ties. Its chunk stores the tap's position. The tapped log's block entity stores the root and original tap item; the bucket's block entity stores the original bucket, resin, and production clock.
+- A tap on the same rooted trunk prevents another, even above or below diagonal steps. Separately rooted trees may have touching branches or leaves without sharing a tap limit. Directly joined ground-level bases still count as one base, supporting wide and stepped trunks.
+- Existing taps repair their old base reservations when an unambiguous trunk can be found. Buckets and resin are preserved. Unloaded, ambiguous, or conflicting reservations are kept until they can be resolved safely.
 - Searches stop at 512 logs, 32 blocks horizontally, or 64 vertically from the clicked log. Unloaded boundaries fail closed. Huge or connected forest structures can therefore be refused.
 - Trees with hanging buckets are rechecked every 30 seconds and at collection time. Bare, disconnected, or unloaded trees produce no resin during that interval.
 - Placement and interaction honor land claims. A bucket needs a free neighboring block with no fluid.
@@ -50,13 +51,13 @@ export VINTAGE_STORY="/path/to/Vintage Story"
 bash scripts/build.sh
 ```
 
-`DOTNET` can select a particular SDK executable. The build uses the installed game's assemblies; it downloads no game libraries or NuGet packages. It runs the logic checks, then creates `artifacts/resingrove-1.0.0.zip`. Copy that ZIP into the game's data-directory `Mods/` folder. Do not install the integration-check mod.
+`DOTNET` can select a particular SDK executable. The build uses the installed game's assemblies; it downloads no game libraries or NuGet packages. It runs the logic checks, then creates `artifacts/resingrove-1.0.1.zip`. Copy that ZIP into the game's data-directory `Mods/` folder. Do not install the integration-check mod.
 
 ## Publishing
 
 GitHub Actions runs on pushes, pull requests, and manual dispatch. It downloads the official **server-only** 1.22.7 archive, verifies its pinned SHA-256, runs the logic checks, builds the mod, validates the ZIP, and uploads it as a downloadable artifact. No game account credentials or repository secrets are required. The game assemblies are build inputs and are excluded from the release ZIP.
 
-Pushing a version tag also creates a **draft GitHub release** with the ZIP attached. Release 1 uses tag `v1`; game metadata and the project's `<Version>` use the game's required semantic format `1.0.0`. The validator accepts `v1` or `v1.0.0` for that version. You review the draft's notes and publish it from GitHub Releases. A rerun leaves an existing release unchanged.
+Pushing a version tag also creates a **draft GitHub release** with the ZIP attached. Use `v1.0.1` for this version, matching `modinfo.json` and the project's `<Version>`. The first release's `v1` tag remains valid for its `1.0.0` metadata. GitHub releases are optional; players can download exclusively from Mod DB. A rerun leaves an existing release unchanged.
 
 For the first release:
 
@@ -67,11 +68,11 @@ For the first release:
 5. Tag the release commit and push the tag:
 
    ```sh
-   git tag -a v1 -m "Resin Grove 1"
-   git push origin v1
+   git tag -a v1.0.1 -m "Resin Grove 1.0.1"
+   git push origin v1.0.1
    ```
 
-6. Review and publish the generated draft release. Use the attached `resingrove-1.0.0.zip` for distribution; GitHub's automatically generated source archives are for source code.
+6. Use the built `resingrove-1.0.1.zip` for distribution, from the workflow artifact or optional draft release. GitHub's automatically generated source archives are for source code.
 7. Sign in to the [Vintage Story Mod DB](https://mods.vintagestory.at/), create a **Game Mod** entry for Resin Grove, and add its description, logo/gallery, source repository, issue tracker, and license. Set its side to **Universal** and explain that both client and server need it.
 8. Add a release, upload the built ZIP, select **Vintage Story 1.22.7** as the tested game version, add the changelog, and set the mod's status to **Published**. Keep the mod ID `resingrove` stable for future updates.
 

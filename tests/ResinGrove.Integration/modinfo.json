@@ -2,7 +2,7 @@
   "type": "code",
   "modid": "resingroveintegration",
   "name": "Resin Grove integration checks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "side": "Server",
-  "dependencies": { "resingrove": "1.0.0" }
+  "dependencies": { "resingrove": "1.0.1" }
 }
