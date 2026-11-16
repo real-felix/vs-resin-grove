@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.2
+
+- Align hot taps with the jaws of wooden and metal tongs instead of using the generic floating pose.
+
 ## 1.0.1
 
 - Separate trees with touching crowns now accept their own taps.

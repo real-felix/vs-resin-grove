@@ -2,7 +2,7 @@
 
 A C# tree tapping mod for **Vintage Story 1.22.7 / .NET 10**. Install on both the client and server.
 
-**Release 1.0.1** · [GitHub](https://github.com/real-felix/vs-resin-grove) · [Report a bug](https://github.com/real-felix/vs-resin-grove/issues)
+**Release 1.0.2** · [GitHub](https://github.com/real-felix/vs-resin-grove) · [Report a bug](https://github.com/real-felix/vs-resin-grove/issues)
 
 <img src="modicon.png" alt="A copper tree tap and wooden bucket on a tree trunk" width="240" />
 
@@ -51,13 +51,13 @@ export VINTAGE_STORY="/path/to/Vintage Story"
 bash scripts/build.sh
 ```
 
-`DOTNET` can select a particular SDK executable. The build uses the installed game's assemblies; it downloads no game libraries or NuGet packages. It runs the logic checks, then creates `artifacts/resingrove-1.0.1.zip`. Copy that ZIP into the game's data-directory `Mods/` folder. Do not install the integration-check mod.
+`DOTNET` can select a particular SDK executable. The build uses the installed game's assemblies; it downloads no game libraries or NuGet packages. It runs the logic checks, then creates `artifacts/resingrove-1.0.2.zip`. Copy that ZIP into the game's data-directory `Mods/` folder. Do not install the integration-check mod.
 
 ## Publishing
 
 GitHub Actions runs on pushes, pull requests, and manual dispatch. It downloads the official **server-only** 1.22.7 archive, verifies its pinned SHA-256, runs the logic checks, builds the mod, validates the ZIP, and uploads it as a downloadable artifact. No game account credentials or repository secrets are required. The game assemblies are build inputs and are excluded from the release ZIP.
 
-Pushing a version tag also creates a **draft GitHub release** with the ZIP attached. Use `v1.0.1` for this version, matching `modinfo.json` and the project's `<Version>`. The first release's `v1` tag remains valid for its `1.0.0` metadata. GitHub releases are optional; players can download exclusively from Mod DB. A rerun leaves an existing release unchanged.
+Pushing a version tag also creates a **draft GitHub release** with the ZIP attached. Use `v1.0.2` for this version, matching `modinfo.json` and the project's `<Version>`. The first release's `v1` tag remains valid for its `1.0.0` metadata. GitHub releases are optional; players can download exclusively from Mod DB. A rerun leaves an existing release unchanged.
 
 For the first release:
 
@@ -68,11 +68,11 @@ For the first release:
 5. Tag the release commit and push the tag:
 
    ```sh
-   git tag -a v1.0.1 -m "Resin Grove 1.0.1"
-   git push origin v1.0.1
+   git tag -a v1.0.2 -m "Resin Grove 1.0.2"
+   git push origin v1.0.2
    ```
 
-6. Use the built `resingrove-1.0.1.zip` for distribution, from the workflow artifact or optional draft release. GitHub's automatically generated source archives are for source code.
+6. Use the built `resingrove-1.0.2.zip` for distribution, from the workflow artifact or optional draft release. GitHub's automatically generated source archives are for source code.
 7. Sign in to the [Vintage Story Mod DB](https://mods.vintagestory.at/), create a **Game Mod** entry for Resin Grove, and add its description, logo/gallery, source repository, issue tracker, and license. Set its side to **Universal** and explain that both client and server need it.
 8. Add a release, upload the built ZIP, select **Vintage Story 1.22.7** as the tested game version, add the changelog, and set the mod's status to **Published**. Keep the mod ID `resingrove` stable for future updates.
 
@@ -94,6 +94,7 @@ The first command checks tree identity, invalid trees, diagonal branches, duplic
 Client playtest checklist:
 
 - Smith two taps from one ingot and confirm the recipe fits a single ingot's voxel budget.
+- Hold a hot tap with wooden and metal tongs in first and third person; confirm the jaws grip the spout. Let it cool and confirm the normal hand pose returns.
 - Tap pine and acacia from different heights and faces; confirm a second tap is refused without consuming the item.
 - Reject placed logs, stumps, floating trunks, unsupported wood, and occupied tap faces.
 - Hang an empty bucket; reject a bucket containing liquid.

@@ -7,6 +7,21 @@
   "textures": { "metal": { "base": "game:block/metal/ingot/{metal}" } },
   "creativeinventory": { "general": ["*"], "items": ["*"] },
   "materialDensity": 8000,
+  "attributes": {
+    "tongOpening": "narrow",
+    "onTongTransform": {
+      "origin": { "x": 0.5, "y": 0.71875, "z": -0.140625 },
+      "translation": { "x": -1.82269, "y": -1.49429, "z": 0.24342 },
+      "rotation": { "x": 78.553, "y": 108.107, "z": 173.869 },
+      "scale": 0.7
+    },
+    "onMetalTongTransform": {
+      "origin": { "x": 0.5, "y": 0.71875, "z": -0.140625 },
+      "translation": { "x": -1.41336, "y": -1.19229, "z": 0.13725 },
+      "rotation": { "x": -83.629, "y": -100.196, "z": -11.196 },
+      "scale": 0.7
+    }
+  },
   "guiTransform": {
     "origin": { "x": 0.5, "y": 0.72, "z": 0 },
     "rotation": { "x": -20, "y": -45, "z": 0 },

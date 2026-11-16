@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <AssemblyName>ResinGrove</AssemblyName>
     <RootNamespace>ResinGrove</RootNamespace>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <VintageStoryPath Condition="'$(VintageStoryPath)' == ''">$(VINTAGE_STORY)</VintageStoryPath>
     <VintageStoryPath Condition="'$(VintageStoryPath)' == '' and $([MSBuild]::IsOSPlatform('OSX'))">/Applications/Vintage Story.app</VintageStoryPath>
     <PackageDirectory>$(MSBuildProjectDirectory)/../../artifacts/resingrove</PackageDirectory>
